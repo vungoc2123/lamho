@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:background="#7ACDD8"
-    android:layout_marginLeft="55dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="8dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:background="#494949">
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiêu đề 1"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="20dp"
+                android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:id="@+id/ivSua"
+                android:src="@drawable/ic_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"/>
+            <ImageView
+                android:id="@+id/ivXoa"
+                android:src="@drawable/ic_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/txtND"
+            android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:textColor="@color/black"
+            android:layout_below="@+id/titleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"/>
+        <TextView
+            android:layout_below="@+id/txtND"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/12/2022"/>
 
-  <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      android:paddingLeft="10dp"
-      tools:ignore="MissingConstraints">
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="adadadad"
-          android:textSize="25sp"
-          android:textStyle="bold"
-          android:id="@+id/txtND"/>
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="2/10/2023"
-          tools:layout_editor_absoluteX="0dp"
-          tools:layout_editor_absoluteY="42dp"
-          android:id="@+id/txtTime"/>
-  </LinearLayout>
-
-    <ImageView
-        android:id="@+id/ivSua"
-        android:layout_width="45dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="4dp"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintRight_toLeftOf="@+id/ivXoa"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
-
-    <ImageView
-        android:id="@+id/ivXoa"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
