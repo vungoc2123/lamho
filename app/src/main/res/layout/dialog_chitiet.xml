@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="30dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem chi tiết"
+        android:textSize="40dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nôi dung"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
+    <EditText
+        android:id="@+id/edt_nd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thởi gian:"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
+    <EditText
+        android:id="@+id/edt_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_margin="10dp"/>
+</LinearLayout>
