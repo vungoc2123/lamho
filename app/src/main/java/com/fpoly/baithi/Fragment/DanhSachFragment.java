@@ -75,8 +75,6 @@ public class DanhSachFragment extends Fragment {
     private void getDS() {
         danhSachDAO = new GhiChuDAO(getContext());
         ArrayList<ThemGhiChu> list = danhSachDAO.layDSGhiChu();
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerViewDanhSach.setLayoutManager(linearLayoutManager);
         ThemGhiChuAdapter adapter = new ThemGhiChuAdapter(getContext(),list);
         recyclerViewDanhSach.setAdapter(adapter);
     }

@@ -17,29 +17,40 @@ import java.util.Date;
 public class GhiChuDAO {
     private DbHelper dbHelper;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-    public GhiChuDAO(Context context){
+
+    public GhiChuDAO(Context context) {
         dbHelper = new DbHelper(context);
     }
 
-    public ArrayList<ThemGhiChu> layDSGhiChu(){
+    public ArrayList<ThemGhiChu> layDSGhiChu() {
         ArrayList<ThemGhiChu> list = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM GHICHU ",new String[]{});
-        if (cursor.getCount() > 0){
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM GHICHU ", new String[]{});
+        if (cursor.getCount() > 0) {
             cursor.moveToFirst();
             do {
-                list.add(new ThemGhiChu(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
-            }while (cursor.moveToNext());
+                SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String dateString = "";
+                try {
+                    Date date = inputFormat.parse( cursor.getString(3) );
+                    dateString = outputFormat.format(date);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                list.add(new ThemGhiChu(cursor.getInt(0), cursor.getString(1), cursor.getString(2), dateString));
+            } while (cursor.moveToNext());
         }
         return list;
     }
-    public boolean themGhiChu(ThemGhiChu ghiChu){
+
+    public boolean themGhiChu(ThemGhiChu ghiChu) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("title",ghiChu.getTitle());
-        contentValues.put("content",ghiChu.getContent());
+        contentValues.put("title", ghiChu.getTitle());
+        contentValues.put("content", ghiChu.getContent());
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dateString="";
+        String dateString = "";
         try {
             Date date = inputFormat.parse(ghiChu.getDate());
             SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -47,20 +58,20 @@ public class GhiChuDAO {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        contentValues.put("date",dateString);
-        long check = sqLiteDatabase.insert("GHICHU",null,contentValues);
+        contentValues.put("date", dateString);
+        long check = sqLiteDatabase.insert("GHICHU", null, contentValues);
         if (check == -1)
             return false;
         return true;
     }
 
-    public boolean UpdateGhiChu(ThemGhiChu ghiChu){
+    public boolean UpdateGhiChu(ThemGhiChu ghiChu) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("title",ghiChu.getTitle());
-        contentValues.put("content",ghiChu.getContent());
+        contentValues.put("title", ghiChu.getTitle());
+        contentValues.put("content", ghiChu.getContent());
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String dateString="";
+        String dateString = "";
         try {
             Date date = inputFormat.parse(ghiChu.getDate());
             SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -68,16 +79,16 @@ public class GhiChuDAO {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
-        contentValues.put("date",dateString);
-        long check = sqLiteDatabase.update("GHICHU",contentValues,"id =?",new String[]{String.valueOf(ghiChu.getId())});
+        contentValues.put("date", dateString);
+        long check = sqLiteDatabase.update("GHICHU", contentValues, "id =?", new String[]{String.valueOf(ghiChu.getId())});
         if (check == -1)
             return false;
         return true;
     }
 
-    public boolean DeleteGhiChu(int id){
+    public boolean DeleteGhiChu(int id) {
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
-        long check = sqLiteDatabase.delete("GHICHU","id =?",new String[]{String.valueOf(id)});
+        long check = sqLiteDatabase.delete("GHICHU", "id =?", new String[]{String.valueOf(id)});
         if (check == -1)
             return false;
         return true;
