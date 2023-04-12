@@ -82,4 +82,17 @@ public class GhiChuDAO {
             return false;
         return true;
     }
+
+    public ArrayList<ThemGhiChu> getGhiChuByTitle(String title){
+        SQLiteDatabase sqLiteDatabase = dbHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM GHICHU WHERE title LIKE ? ",new String[]{"%"+title+"%"});
+        ArrayList<ThemGhiChu> list = new ArrayList<>();
+        if (cursor.getCount() > 0){
+            cursor.moveToFirst();
+            do {
+                list.add(new ThemGhiChu(cursor.getInt(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
+            }while (cursor.moveToNext());
+        }
+        return list;
+    }
 }
